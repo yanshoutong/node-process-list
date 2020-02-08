@@ -22,7 +22,18 @@
             "DisableSpecificWarnings": [4100, 4127, 4201, 4244, 4267, 4506, 4611, 4714, 4800, 4005]
           }
         }
-      }],["OS!='mac' and OS!='win'", {
+      }],
+      ['OS=="mac"', {
+        "cflags!': ["-fno-exceptions"],
+        "cflags_cc!": ["-fno-rtti", "-fno-exceptions"],
+        "sources": [
+          "src/unix/tasklist.cpp"
+        ],
+        'xcode_settings': {
+            'GCC_ENABLE_CPP_EXCEPTIONS': 'YES'
+        }
+      }],
+      ["OS!='mac' and OS!='win'", {
         "sources": [
           "src/unix/tasklist.cpp"
         ],

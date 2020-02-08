@@ -97,13 +97,14 @@ static std::vector<dirent> ls(const char *path, FilterPredicate filter) {
  * @link https://github.com/hishamhm/htop
  */
 static ssize_t xread(int fd, void *buf, size_t count) {
-  // Read some bytes. Retry on EINTR and when we don't get as many bytes as we requested.
+  // Read some bytes. Retry on EINTR and when we don't get as many
+  // bytes as we requested.
   size_t alreadyRead = 0;
-  for(;;) {
+  for (;;) {
     ssize_t res = read(fd, buf, count);
      if (res == -1 && errno == EINTR) continue;
     if (res > 0) {
-       buf = ((char*)buf)+res;
+       buf = (reinterpret_cast<char*>(buf))+res;
       count -= res;
       alreadyRead += res;
     }
