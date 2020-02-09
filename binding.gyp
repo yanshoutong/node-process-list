@@ -26,6 +26,9 @@
       ['OS=="mac"', {
         "cflags!": ["-fno-exceptions"],
         "cflags_cc!": ["-fno-rtti", "-fno-exceptions"],
+        "sources": [
+          "src/mac/tasklist.cpp"
+        ],
         'xcode_settings': {
             'GCC_ENABLE_CPP_EXCEPTIONS': 'YES'
         }
