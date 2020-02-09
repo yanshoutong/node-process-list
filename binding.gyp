@@ -39,6 +39,7 @@
         ],
         "cflags_cc!": ["-fno-rtti", "-fno-exceptions"],
         "cflags_cc+": [
+          "-Wno-error=format-truncation",
           "-fexceptions",
           "-std=c++0x",
           "-frtti"
