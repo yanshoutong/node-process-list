@@ -117,7 +117,7 @@ static ssize_t xread(int fd, void *buf, size_t count) {
  * read process cmdline
  */
 static std::string cmdline(const char* pid) {
-  char path[32];
+  char path[256];
   snprintf(path, sizeof(path), "/proc/%s/cmdline", pid);
 
   int fd = open(path, O_RDONLY);
@@ -157,7 +157,7 @@ static std::string owner(const char *pid) {
   int bufsize = sizeof(buf);
   std::string username;
 
-  char path[32];
+  char path[256];
   snprintf(path, sizeof(path), "/proc/%s", pid);
 
   if (stat(path, &sstat) == -1) {
@@ -178,7 +178,7 @@ static std::string owner(const char *pid) {
  * and process executable file name
  */
 static void procpath(const char *pid, process *proc) {
-  char syspath[32];
+  char syspath[256];
   snprintf(syspath, sizeof(syspath), "/proc/%s/exe", pid);
 
   char path[4096+1];
@@ -198,7 +198,7 @@ static void procpath(const char *pid, process *proc) {
  * read `/proc/$pid/stat`
  */
 static void procstat(const char *fpid, procstat_t *pstat) {
-  char path[32];
+  char path[256];
   snprintf(path, sizeof(path), "/proc/%s/stat", fpid);
 
   auto fd = fopen(path, "r");
@@ -238,7 +238,7 @@ static void procstat(const char *fpid, procstat_t *pstat) {
 }
 
 static void procmem(const char *pid, process *proc) {
-  char path[32];
+  char path[256];
   snprintf(path, sizeof(path), "/proc/%s/statm", pid);
 
   auto fd = fopen(path, "r");
