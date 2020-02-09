@@ -40,7 +40,6 @@ class SnapshotWorker : public Nan::AsyncWorker {
   void Execute() {
     try {
       tasks = pl::list(psfields);
-      if (!tasks) SetErrorMessage("/proc fs not supported on platform");
     } catch(const std::exception &e) {
       SetErrorMessage(e.what());
     }
